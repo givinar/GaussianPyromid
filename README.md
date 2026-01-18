@@ -5,6 +5,8 @@ Testing Gaussian pyramid in NTBC project for improved compression
 The algorithm is fed with a 512 x 512 texture as input. Next, a smoothing filter with a kernel size of 5 by 5 is applied to this texture. The result is a new smooth 256 x 256 texture. 
 The new texture is interpolated to obtain the required size, and then the resulting texture is subtracted from the input (original texture). This procedure is then repeated for the resulting difference
 ## Results
+In this example, only 2 levels were used. This means the resulting output was two 256x256 Gaussian textures and one 512x512 Laplacian texture
+
 Original texture (512 x 512):
 
 <img width="512" height="512" alt="Bricks085_512-PNG_Color" src="https://github.com/user-attachments/assets/7996d116-40b2-4d4e-8c95-c38fdfd9fd54" />
