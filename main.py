@@ -16,8 +16,12 @@ def display_images(original, blurred, msg_left, msg_right):
     plt.tight_layout()
     plt.show()
 
+def save_blurred_img(name, img):
+    img_bgr = cv.cvtColor(img, cv.COLOR_RGB2BGR)
+    cv.imwrite(name, img_bgr)
+
 if __name__ == "__main__":
-    layers = 6
+    layers = 2
     kernel_size=(5, 5)
     sigma = 0
     image_path = "Bricks085_512-PNG_Color.png"
@@ -37,6 +41,9 @@ if __name__ == "__main__":
         upscaled_gaussian = cv.pyrUp(blurred)
         laplacian = laplacian - upscaled_gaussian
         display_images(laplacian, upscaled_gaussian, msg_left="Laplacian", msg_right='Gaussian')
+        save_blurred_img(f"blurred_{i}.png", blurred)
+
+    save_blurred_img(f"laplacian.png", laplacian)
 
     # now reconstruct
     for i in range(layers-1, -1, -1):
@@ -44,3 +51,4 @@ if __name__ == "__main__":
         laplacian = laplacian + upscaled_gaussian
         #lap = lap + gp[i]
         display_images(laplacian, image_rgb, msg_left="Restored", msg_right='Origin')
+
